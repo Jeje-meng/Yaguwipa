@@ -17,7 +17,7 @@
 </head>
 <body class="admin-body">
 
-    <!-- Sidebargfgfg -->
+    <!-- Sidebar -->
     <aside class="admin-sidebar">
         <a href="{{ url('/backoffice/dashboard') }}" class="sidebar-brand" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
             <img src="{{ asset('images/logoyaguwipa.png') }}" alt="Logo YWP" style="height: 38px; width: auto; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
