@@ -1,0 +1,133 @@
+/* ===========================
+   PORTAL KEMITRAAN (PARTNER)
+=========================== */
+.partner-portal-section {
+    padding: 120px 0 80px 0;
+    background-color: var(--bg-main);
+    min-height: 80vh;
+}
+.portal-card {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 40px;
+    border: 1px solid var(--accent-light);
+}
+.portal-card-max {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.portal-header {
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+.portal-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+.portal-title-sm {
+    font-size: 1.5rem;
+}
+.partner-grid-layout {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 40px;
+}
+@media (max-width: 992px) {
+    .partner-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+.partner-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+.partner-table th {
+    background: #f8fafc;
+    padding: 12px 15px;
+    font-weight: 700;
+    color: var(--text-muted);
+    border-bottom: 2px solid #e2e8f0;
+}
+.partner-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+}
+.badge-status {
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.badge-pending {
+    background: #fef3c7;
+    color: #d97706;
+}
+.badge-approved {
+    background: #d1fae5;
+    color: #065f46;
+}
+.badge-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition-fast);
+    gap: 5px;
+}
+.btn-edit {
+    background: #e0e7ff;
+    color: var(--accent);
+}
+.btn-edit:hover {
+    background: #c7d2fe;
+}
+.btn-cancel {
+    background: #fee2e2;
+    color: #ef4444;
+}
+.btn-cancel:hover {
+    background: #fecaca;
+}
+
+/* Form styling */
+.form-group-portal {
+    margin-bottom: 20px;
+}
+.form-group-portal label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+.form-control-portal {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid var(--accent-light);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    transition: var(--transition-fast);
+}
+.form-control-portal:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-light);
+}
