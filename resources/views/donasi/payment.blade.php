@@ -62,57 +62,13 @@
             @elseif($paymentMethod === 'bank_transfer')
                 <div class="instruction-box">
                     <h4>🏦 Pembayaran dengan Transfer Bank</h4>
-                    <p>Silakan pilih salah satu bank resmi milik yayasan di bawah ini untuk melihat nomor rekening transfer:</p>
-                    
-                    <!-- Bank Selector Tabs -->
-                    <div class="payment-selector-grid">
-                        <div class="payment-selector-item active" data-provider="bca" onclick="selectProvider('bank', 'bca')">Bank BCA</div>
-                        <div class="payment-selector-item" data-provider="mandiri" onclick="selectProvider('bank', 'mandiri')">Bank Mandiri</div>
-                        <div class="payment-selector-item" data-provider="bni" onclick="selectProvider('bank', 'bni')">Bank BNI</div>
-                        <div class="payment-selector-item" data-provider="bri" onclick="selectProvider('bank', 'bri')">Bank BRI</div>
-                    </div>
+                    <p>Silakan lakukan transfer ke rekening bank resmi milik yayasan di bawah ini:</p>
 
-                    <!-- Dynamic Bank Details Cards -->
+                    <!-- Only Bank BRI details card -->
                     @php
-                        $bca_num = \App\Models\Setting::get('pay_bank_bca', '123-456-7890');
-                        $mandiri_num = \App\Models\Setting::get('pay_bank_mandiri', '987-654-3210');
-                        $bni_num = \App\Models\Setting::get('pay_bank_bni', '555-666-7777');
                         $bri_num = \App\Models\Setting::get('pay_bank_bri', '888-999-1111');
                     @endphp
-                    <div id="bank-details-bca" class="payment-details-card provider-details">
-                        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Bank Transfer - BCA</div>
-                        <div class="payment-details-row">
-                            <div>
-                                <span class="payment-number-text" id="num-bca">{{ $bca_num }}</span>
-                                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">a/n Yayasan Guna Widya Paramesthi</div>
-                            </div>
-                            <button type="button" class="copy-btn" onclick="copyToClipboard('{{ $bca_num }}', this)">Salin</button>
-                        </div>
-                    </div>
-
-                    <div id="bank-details-mandiri" class="payment-details-card provider-details" style="display: none;">
-                        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Bank Transfer - Mandiri</div>
-                        <div class="payment-details-row">
-                            <div>
-                                <span class="payment-number-text" id="num-mandiri">{{ $mandiri_num }}</span>
-                                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">a/n Yayasan Guna Widya Paramesthi</div>
-                            </div>
-                            <button type="button" class="copy-btn" onclick="copyToClipboard('{{ $mandiri_num }}', this)">Salin</button>
-                        </div>
-                    </div>
-
-                    <div id="bank-details-bni" class="payment-details-card provider-details" style="display: none;">
-                        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Bank Transfer - BNI</div>
-                        <div class="payment-details-row">
-                            <div>
-                                <span class="payment-number-text" id="num-bni">{{ $bni_num }}</span>
-                                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">a/n Yayasan Guna Widya Paramesthi</div>
-                            </div>
-                            <button type="button" class="copy-btn" onclick="copyToClipboard('{{ $bni_num }}', this)">Salin</button>
-                        </div>
-                    </div>
-
-                    <div id="bank-details-bri" class="payment-details-card provider-details" style="display: none;">
+                    <div id="bank-details-bri" class="payment-details-card provider-details" style="display: block;">
                         <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Bank Transfer - BRI</div>
                         <div class="payment-details-row">
                             <div>
@@ -197,7 +153,7 @@
                 @if($paymentMethod === 'qris')
                     <input type="hidden" name="payment_provider" value="QRIS">
                 @elseif($paymentMethod === 'bank_transfer')
-                    <input type="hidden" id="selected_payment_provider" name="payment_provider" value="BCA">
+                    <input type="hidden" id="selected_payment_provider" name="payment_provider" value="BRI">
                 @elseif($paymentMethod === 'e_wallet')
                     <input type="hidden" id="selected_payment_provider" name="payment_provider" value="GOPAY">
                 @endif
