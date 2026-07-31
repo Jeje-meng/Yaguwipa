@@ -139,6 +139,7 @@ body.admin-body {
     background-color: var(--backoffice-bg);
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 /* Header bar */
