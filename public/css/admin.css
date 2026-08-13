@@ -46,9 +46,10 @@ body.admin-body {
     left: 0;
     display: flex;
     flex-direction: column;
-    z-index: 100;
+    z-index: 1050;
     box-shadow: 4px 0 25px rgba(0,0,0,0.15);
     overflow-y: auto;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Brand Area */
@@ -578,4 +579,112 @@ body.admin-body {
     color: #cbd5e1;
     border-color: var(--backoffice-border, #cbd5e1);
     cursor: not-allowed;
+}
+
+/* ==========================================================================
+   BACKOFFICE RESPONSIVE DRAWER & MOBILE ADAPTATIONS
+   ========================================================================== */
+.sidebar-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1040;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-backdrop.show {
+    display: block;
+    opacity: 1;
+}
+
+.sidebar-close-btn {
+    display: none;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #ffffff;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+    margin-left: auto;
+}
+
+.sidebar-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 992px) {
+    .admin-sidebar {
+        transform: translateX(-100%);
+        box-shadow: 10px 0 35px rgba(0,0,0,0.3);
+    }
+
+    .admin-sidebar.show {
+        transform: translateX(0);
+    }
+
+    .sidebar-close-btn {
+        display: flex;
+    }
+
+    .admin-main {
+        margin-left: 0 !important;
+        max-width: 100% !important;
+        padding: 20px 15px !important;
+    }
+
+    .admin-header {
+        padding: 12px 18px !important;
+        margin-bottom: 18px !important;
+    }
+
+    .admin-header h1 {
+        font-size: 1.15rem !important;
+    }
+
+    .card-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .card-header-row .admin-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-header {
+        padding: 10px 12px !important;
+    }
+
+    .admin-header h1 {
+        font-size: 1rem !important;
+        gap: 8px !important;
+    }
+
+    .admin-main {
+        padding: 12px !important;
+    }
+
+    .content-card {
+        padding: 15px !important;
+        border-radius: var(--radius-sm) !important;
+    }
+
+    #notificationDropdown {
+        width: calc(100vw - 30px) !important;
+        right: -60px !important;
+    }
 }

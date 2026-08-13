@@ -19,13 +19,16 @@
 
     <!-- Sidebar -->
     <aside class="admin-sidebar">
-        <a href="{{ url('/backoffice/dashboard') }}" class="sidebar-brand" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
-            <img src="{{ asset('images/logoyaguwipa.png') }}" alt="Logo YWP" style="height: 38px; width: auto; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
-            <div style="line-height: 1.2; text-align: left;">
-                <span style="font-weight: 800; font-size: 0.95rem; display: block; color: #ffffff;">YAGUWIPA</span>
-                <span style="font-size: 0.65rem; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">BACKOFFICE PANEL</span>
-            </div>
-        </a>
+        <div class="sidebar-brand" style="display: flex; align-items: center; justify-content: space-between; padding: 20px;">
+            <a href="{{ url('/backoffice/dashboard') }}" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                <img src="{{ asset('images/logoyaguwipa.png') }}" alt="Logo YWP" style="height: 38px; width: auto; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+                <div style="line-height: 1.2; text-align: left;">
+                    <span style="font-weight: 800; font-size: 0.95rem; display: block; color: #ffffff;">YAGUWIPA</span>
+                    <span style="font-size: 0.65rem; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">BACKOFFICE PANEL</span>
+                </div>
+            </a>
+            <button type="button" id="sidebarCloseBtn" class="sidebar-close-btn" aria-label="Tutup Menu">✕</button>
+        </div>
         
         <!-- UTAMA GROUP -->
         <div class="sidebar-group-label">Utama</div>
@@ -162,6 +165,7 @@
             </form>
         </div>
     </aside>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
     <!-- Main Content Area -->
     <main class="admin-main">
@@ -327,35 +331,70 @@
 
      <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const btn = document.getElementById('hamburgerMenuBtn');
-            const dropdown = document.getElementById('hamburgerDropdown');
+            const sidebar = document.querySelector('.admin-sidebar');
+            const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+            const sidebarCloseBtn = document.getElementById('sidebarCloseBtn');
+            const hamburgerBtn = document.getElementById('hamburgerMenuBtn');
+            const hamburgerDropdown = document.getElementById('hamburgerDropdown');
+            const notifBellBtn = document.getElementById('notificationBellBtn');
+            const notifDropdown = document.getElementById('notificationDropdown');
             
-            if (btn && dropdown) {
-                btn.addEventListener('click', function(e) {
+            function toggleSidebar() {
+                if (sidebar && sidebarBackdrop) {
+                    const isOpen = sidebar.classList.contains('show');
+                    if (isOpen) {
+                        sidebar.classList.remove('show');
+                        sidebarBackdrop.classList.remove('show');
+                        document.body.style.overflow = '';
+                    } else {
+                        sidebar.classList.add('show');
+                        sidebarBackdrop.classList.add('show');
+                        document.body.style.overflow = 'hidden';
+                    }
+                }
+            }
+
+            function closeSidebar() {
+                if (sidebar && sidebarBackdrop) {
+                    sidebar.classList.remove('show');
+                    sidebarBackdrop.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', closeSidebar);
+            if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', closeSidebar);
+
+            if (hamburgerBtn) {
+                hamburgerBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const isHidden = dropdown.style.display === 'none' || !dropdown.style.display;
-                    dropdown.style.display = isHidden ? 'flex' : 'none';
-                    // Hide notification dropdown if open
-                    if (notifDropdown) notifDropdown.style.display = 'none';
-                });
-                
-                document.addEventListener('click', function(e) {
-                    if (!dropdown.contains(e.target) && e.target !== btn) {
-                        dropdown.style.display = 'none';
+                    if (window.innerWidth <= 992) {
+                        // On mobile/tablet, toggle drawer
+                        toggleSidebar();
+                    } else {
+                        // On desktop, toggle quick nav dropdown
+                        if (hamburgerDropdown) {
+                            const isHidden = hamburgerDropdown.style.display === 'none' || !hamburgerDropdown.style.display;
+                            hamburgerDropdown.style.display = isHidden ? 'flex' : 'none';
+                            if (notifDropdown) notifDropdown.style.display = 'none';
+                        }
                     }
                 });
             }
+            
+            document.addEventListener('click', function(e) {
+                if (hamburgerDropdown && !hamburgerDropdown.contains(e.target) && e.target !== hamburgerBtn) {
+                    hamburgerDropdown.style.display = 'none';
+                }
+            });
 
             // Notification dropdown toggle
-            const notifBellBtn = document.getElementById('notificationBellBtn');
-            const notifDropdown = document.getElementById('notificationDropdown');
             if (notifBellBtn && notifDropdown) {
                 notifBellBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const isHidden = notifDropdown.style.display === 'none' || !notifDropdown.style.display;
                     notifDropdown.style.display = isHidden ? 'block' : 'none';
-                    // Hide hamburger dropdown if open
-                    if (dropdown) dropdown.style.display = 'none';
+                    if (hamburgerDropdown) hamburgerDropdown.style.display = 'none';
                 });
                 
                 document.addEventListener('click', function(e) {
@@ -364,6 +403,16 @@
                     }
                 });
             }
+
+            // Close sidebar on link click in mobile view
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 992) {
+                        closeSidebar();
+                    }
+                });
+            });
         });
     </script>
 </body>
