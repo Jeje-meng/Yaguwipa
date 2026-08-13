@@ -72,12 +72,22 @@
         </div>
 
         <div class="admin-form-group">
-            <label>Gambar Cover Hero Saat Ini</label>
+            <label>Media Cover Hero Saat Ini</label>
             <div style="margin-bottom: 15px;">
-                <img src="{{ asset('images/' . $hero_image) }}" alt="Hero Cover" style="max-width: 100%; max-height: 220px; border-radius: var(--radius-sm); border: 1px solid var(--backoffice-border); object-fit: cover;">
+                @php
+                    $heroExtension = pathinfo($hero_image, PATHINFO_EXTENSION);
+                    $heroIsVideo = in_array(strtolower($heroExtension), ['mp4', 'webm', 'ogg', 'mov', 'avi']);
+                @endphp
+                @if($heroIsVideo)
+                    <video autoplay loop muted playsinline style="max-width: 100%; max-height: 220px; border-radius: var(--radius-sm); border: 1px solid var(--backoffice-border); object-fit: cover;">
+                        <source src="{{ asset('images/' . $hero_image) }}" type="video/{{ $heroExtension }}">
+                    </video>
+                @else
+                    <img src="{{ asset('images/' . $hero_image) }}" alt="Hero Cover" style="max-width: 100%; max-height: 220px; border-radius: var(--radius-sm); border: 1px solid var(--backoffice-border); object-fit: cover;">
+                @endif
             </div>
-            <label for="hero_image">Ganti Gambar Cover Hero</label>
-            <input type="file" id="hero_image" name="hero_image" accept="image/*" class="admin-form-control">
+            <label for="hero_image">Ganti Media Cover Hero (Gambar / Video)</label>
+            <input type="file" id="hero_image" name="hero_image" accept="image/*,video/*" class="admin-form-control">
         </div>
 
 

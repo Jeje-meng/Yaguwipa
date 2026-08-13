@@ -67,7 +67,7 @@ class SettingController extends Controller
             'misi' => 'required|string',
             'tujuan' => 'required|string',
             'arti_logo' => 'required|string',
-            'hero_image' => 'nullable|image|max:4096',
+            'hero_image' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg,mp4,webm,ogg,avi,mov|max:20480',
             'visi_logo' => 'nullable|image|max:2048',
             'misi_logo' => 'nullable|image|max:2048',
             'tujuan_logo' => 'nullable|image|max:2048',

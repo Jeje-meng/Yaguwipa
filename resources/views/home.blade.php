@@ -3,7 +3,26 @@
 @section('content')
 
 <!-- ================= HERO ================= -->
-<section id="beranda" class="hero" style="background-image: url('{{ asset('images/' . $hero_image) }}');">
+@php
+    $heroExtension = pathinfo($hero_image, PATHINFO_EXTENSION);
+    $heroIsVideo = in_array(strtolower($heroExtension), ['mp4', 'webm', 'ogg', 'mov', 'avi']);
+@endphp
+
+@if($heroIsVideo)
+    <style>
+        .hero::before {
+            z-index: 1 !important;
+        }
+    </style>
+@endif
+
+<section id="beranda" class="hero" {!! !$heroIsVideo ? 'style="background-image: url(\'' . asset('images/' . $hero_image) . '\');"' : '' !!}>
+
+    @if($heroIsVideo)
+        <video autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none;">
+            <source src="{{ asset('images/' . $hero_image) }}" type="video/{{ $heroExtension }}">
+        </video>
+    @endif
 
     <div class="hero-overlay"></div>
 
@@ -22,7 +41,7 @@
             </p>
 
             <div class="hero-actions">
-                <a href="#" class="btn-donasi">
+                <a href="#donasi" class="btn-donasi">
                     Donasi Sekarang
                 </a>
             </div>
