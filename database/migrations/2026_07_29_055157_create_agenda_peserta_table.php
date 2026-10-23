@@ -14,8 +14,8 @@ return new class extends Migration
         if (!Schema::hasTable('agenda_peserta')) {
             Schema::create('agenda_peserta', function (Blueprint $table) {
                 $table->id();
-                $table->bigInteger('agenda_id');
-                $table->bigInteger('user_id');
+                $table->unsignedBigInteger('agenda_id');
+                $table->unsignedBigInteger('user_id');
                 $table->timestamps();
 
                 $table->foreign('agenda_id')->references('id')->on('agenda')->onDelete('cascade');
