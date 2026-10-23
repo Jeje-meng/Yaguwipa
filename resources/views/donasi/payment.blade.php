@@ -42,8 +42,6 @@
                 $paymentMethod = 'bank_transfer';
                 if (Str::contains(strtoupper($donasi->deskripsi), 'QRIS')) {
                     $paymentMethod = 'qris';
-                } elseif (Str::contains(strtoupper($donasi->deskripsi), 'E_WALLET') || Str::contains(strtoupper($donasi->deskripsi), 'E-WALLET')) {
-                    $paymentMethod = 'e_wallet';
                 }
             @endphp
 
@@ -64,82 +62,18 @@
                     <h4>🏦 Pembayaran dengan Transfer Bank</h4>
                     <p>Silakan lakukan transfer ke rekening bank resmi milik yayasan di bawah ini:</p>
 
-                    <!-- Only Bank BRI details card -->
+                    <!-- Only Bank BNI details card -->
                     @php
-                        $bri_num = \App\Models\Setting::get('pay_bank_bri', '888-999-1111');
+                        $bni_num = \App\Models\Setting::get('pay_bank_bni', '2706782708');
                     @endphp
-                    <div id="bank-details-bri" class="payment-details-card provider-details" style="display: block;">
-                        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Bank Transfer - BRI</div>
+                    <div id="bank-details-bni" class="payment-details-card provider-details" style="display: block;">
+                        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Bank Transfer - BNI</div>
                         <div class="payment-details-row">
                             <div>
-                                <span class="payment-number-text" id="num-bri">{{ $bri_num }}</span>
-                                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">a/n Yayasan Guna Widya Paramesthi</div>
+                                <span class="payment-number-text" id="num-bni">{{ $bni_num }}</span>
+                                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">a/n YAYASAN GUNA WIDYA PARAMESTHI</div>
                             </div>
-                            <button type="button" class="copy-btn" onclick="copyToClipboard('{{ $bri_num }}', this)">Salin</button>
-                        </div>
-                    </div>
-                </div>
-            @elseif($paymentMethod === 'e_wallet')
-                <div class="instruction-box">
-                    <h4>💳 Pembayaran dengan E-Wallet</h4>
-                    <p>Silakan pilih salah satu opsi e-wallet resmi milik yayasan di bawah ini untuk melihat nomor akun tujuan:</p>
-                    
-                    <!-- E-Wallet Selector Tabs -->
-                    <div class="payment-selector-grid">
-                        <div class="payment-selector-item active" data-provider="gopay" onclick="selectProvider('ewallet', 'gopay')">GoPay</div>
-                        <div class="payment-selector-item" data-provider="ovo" onclick="selectProvider('ewallet', 'ovo')">OVO</div>
-                        <div class="payment-selector-item" data-provider="dana" onclick="selectProvider('ewallet', 'dana')">DANA</div>
-                        <div class="payment-selector-item" data-provider="linkaja" onclick="selectProvider('ewallet', 'linkaja')">LinkAja</div>
-                    </div>
-
-                    <!-- Dynamic E-Wallet Details Cards -->
-                    @php
-                        $gopay_num = \App\Models\Setting::get('pay_ewallet_gopay', '087865309966');
-                        $ovo_num = \App\Models\Setting::get('pay_ewallet_ovo', '087865309966');
-                        $dana_num = \App\Models\Setting::get('pay_ewallet_dana', '087865309966');
-                        $linkaja_num = \App\Models\Setting::get('pay_ewallet_linkaja', '087865309966');
-                    @endphp
-                    <div id="ewallet-details-gopay" class="payment-details-card provider-details">
-                        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">E-Wallet - GoPay</div>
-                        <div class="payment-details-row">
-                            <div>
-                                <span class="payment-number-text" id="num-gopay">{{ $gopay_num }}</span>
-                                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">a/n Yayasan Guna Widya Paramesthi</div>
-                            </div>
-                            <button type="button" class="copy-btn" onclick="copyToClipboard('{{ $gopay_num }}', this)">Salin</button>
-                        </div>
-                    </div>
-
-                    <div id="ewallet-details-ovo" class="payment-details-card provider-details" style="display: none;">
-                        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">E-Wallet - OVO</div>
-                        <div class="payment-details-row">
-                            <div>
-                                <span class="payment-number-text" id="num-ovo">{{ $ovo_num }}</span>
-                                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">a/n Yayasan Guna Widya Paramesthi</div>
-                            </div>
-                            <button type="button" class="copy-btn" onclick="copyToClipboard('{{ $ovo_num }}', this)">Salin</button>
-                        </div>
-                    </div>
-
-                    <div id="ewallet-details-dana" class="payment-details-card provider-details" style="display: none;">
-                        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">E-Wallet - DANA</div>
-                        <div class="payment-details-row">
-                            <div>
-                                <span class="payment-number-text" id="num-dana">{{ $dana_num }}</span>
-                                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">a/n Yayasan Guna Widya Paramesthi</div>
-                            </div>
-                            <button type="button" class="copy-btn" onclick="copyToClipboard('{{ $dana_num }}', this)">Salin</button>
-                        </div>
-                    </div>
-
-                    <div id="ewallet-details-linkaja" class="payment-details-card provider-details" style="display: none;">
-                        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">E-Wallet - LinkAja</div>
-                        <div class="payment-details-row">
-                            <div>
-                                <span class="payment-number-text" id="num-linkaja">{{ $linkaja_num }}</span>
-                                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">a/n Yayasan Guna Widya Paramesthi</div>
-                            </div>
-                            <button type="button" class="copy-btn" onclick="copyToClipboard('{{ $linkaja_num }}', this)">Salin</button>
+                            <button type="button" class="copy-btn" onclick="copyToClipboard('{{ $bni_num }}', this)">Salin</button>
                         </div>
                     </div>
                 </div>
@@ -153,9 +87,7 @@
                 @if($paymentMethod === 'qris')
                     <input type="hidden" name="payment_provider" value="QRIS">
                 @elseif($paymentMethod === 'bank_transfer')
-                    <input type="hidden" id="selected_payment_provider" name="payment_provider" value="BRI">
-                @elseif($paymentMethod === 'e_wallet')
-                    <input type="hidden" id="selected_payment_provider" name="payment_provider" value="GOPAY">
+                    <input type="hidden" id="selected_payment_provider" name="payment_provider" value="BNI">
                 @endif
 
                 <div class="upload-form-group">

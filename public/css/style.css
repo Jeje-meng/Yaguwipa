@@ -2484,3 +2484,35 @@ display:none;
         padding: 12px !important;
     }
 }
+
+/* ==========================================================================
+   NEWS SECTION RESPONSIVENESS (HOMEPAGE)
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .news-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .news-subtitle {
+        width: 100%;
+        max-width: 600px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .news-header h2 {
+        font-size: 28px;
+    }
+}

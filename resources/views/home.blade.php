@@ -537,16 +537,6 @@
                                         <span>BANK TRANSFER</span>
                                     </div>
                                 </label>
-                                <label class="payment-option">
-                                    <input type="radio" name="payment_method" value="e_wallet">
-                                    <div class="payment-card-content" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
-                                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                                            <line x1="1" y1="10" x2="23" y2="10"></line>
-                                        </svg>
-                                        <span>E-WALLET</span>
-                                    </div>
-                                </label>
                             </div>
                         </div>
 
