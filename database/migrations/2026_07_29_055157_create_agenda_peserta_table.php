@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('agenda_peserta', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('agenda_id');
-            $table->bigInteger('user_id');
-            $table->timestamps();
+        if (!Schema::hasTable('agenda_peserta')) {
+            Schema::create('agenda_peserta', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger('agenda_id');
+                $table->bigInteger('user_id');
+                $table->timestamps();
 
-            $table->foreign('agenda_id')->references('id')->on('agenda')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        });
+                $table->foreign('agenda_id')->references('id')->on('agenda')->onDelete('cascade');
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            });
+        }
     }
 
     /**
