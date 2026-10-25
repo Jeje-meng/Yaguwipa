@@ -16,7 +16,7 @@ return new class extends Migration
                 $table->string('role')->default('user')->after('password');
             }
             if (!Schema::hasColumn('users', 'usertype')) {
-                $table->string('usertype')->default('umum')->after('role');
+                $table->string('usertype')->nullable()->after('role');
             }
             if (!Schema::hasColumn('users', 'alamat')) {
                 $table->text('alamat')->nullable()->after('usertype');
