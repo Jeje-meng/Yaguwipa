@@ -38,12 +38,12 @@ class AdminSeeder extends Seeder
             'hero_image'        => 'foto_cg.jpeg',
 
             // Navbar
-            'nav_title_1'   => 'Beranda',   'nav_link_1' => '#beranda',
-            'nav_title_2'   => 'Tentang',   'nav_link_2' => '#tentang',
-            'nav_title_3'   => 'Agenda',    'nav_link_3' => '#agenda',
-            'nav_title_4'   => 'Berita',    'nav_link_4' => '#berita',
-            'nav_title_5'   => 'Galeri',    'nav_link_5' => '#galeri',
-            'nav_title_6'   => 'Donasi',    'nav_link_6' => '#donasi',
+            'nav_title_1'   => 'Tentang Kami',     'nav_link_1' => '#tentang_kami',
+            'nav_title_2'   => 'Partner',           'nav_link_2' => '#lembaga_terkait',
+            'nav_title_3'   => 'Galeri',            'nav_link_3' => '#galeri',
+            'nav_title_4'   => 'Berita',            'nav_link_4' => '#berita',
+            'nav_title_5'   => 'Agenda',            'nav_link_5' => '#agenda',
+            'nav_title_6'   => 'Donasi',            'nav_link_6' => '#donasi',
 
             // Kontak
             'contact_alamat'    => 'Bali, Indonesia',
