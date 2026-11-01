@@ -160,11 +160,11 @@
             @php
                 $navItems = [
                     ['title' => \App\Models\Setting::get('nav_title_1', 'Tentang Kami'), 'link' => \App\Models\Setting::get('nav_link_1', '#tentang_kami')],
-                    ['title' => \App\Models\Setting::get('nav_title_2', 'Partner'), 'link' => \App\Models\Setting::get('nav_link_2', '#lembaga_terkait')],
-                    ['title' => \App\Models\Setting::get('nav_title_3', 'Galeri'), 'link' => \App\Models\Setting::get('nav_link_3', '#galeri')],
-                    ['title' => \App\Models\Setting::get('nav_title_4', 'Berita'), 'link' => \App\Models\Setting::get('nav_link_4', '#berita')],
-                    ['title' => \App\Models\Setting::get('nav_title_5', 'Agenda'), 'link' => \App\Models\Setting::get('nav_link_5', '#agenda')],
-                    ['title' => \App\Models\Setting::get('nav_title_6', 'Donasi'), 'link' => \App\Models\Setting::get('nav_link_6', '#donasi')],
+                    ['title' => \App\Models\Setting::get('nav_title_2', 'Partner'),       'link' => \App\Models\Setting::get('nav_link_2', '#lembaga_terkait')],
+                    ['title' => \App\Models\Setting::get('nav_title_3', 'Galeri'),         'link' => \App\Models\Setting::get('nav_link_3', '#galeri')],
+                    ['title' => \App\Models\Setting::get('nav_title_4', 'Berita'),         'link' => \App\Models\Setting::get('nav_link_4', '#berita')],
+                    ['title' => \App\Models\Setting::get('nav_title_5', 'Agenda'),         'link' => \App\Models\Setting::get('nav_link_5', '#agenda')],
+                    ['title' => \App\Models\Setting::get('nav_title_6', 'Donasi'),         'link' => \App\Models\Setting::get('nav_link_6', '#donasi')],
                 ];
             @endphp
 
