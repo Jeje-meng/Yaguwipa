@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal')->nullable();
             $table->longText('body')->nullable();
             $table->string('gambar_berita')->nullable();
-            $table->boolean('is_active')->default(1);
+            $table->enum('is_active', ['draft', 'publish'])->default('draft');
             $table->timestamps();
         });
     }
